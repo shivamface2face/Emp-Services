@@ -69,4 +69,7 @@ public class EmolyeeServies {
     }
 
 
+    public Employee getEmpByName(String name) {
+        return empRepo.findByName(name);
+    }
 }

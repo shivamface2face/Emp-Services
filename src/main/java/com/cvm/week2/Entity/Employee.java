@@ -19,9 +19,10 @@ public class Employee {
     @NotNull
     private Long id;
     @NotNull
-    @Min(1)
+    @Min(2)
     @Max(10)
     private String name;
     @Email
     private String email;
+
 }
