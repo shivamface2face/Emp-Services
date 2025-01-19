@@ -3,7 +3,9 @@ package com.cvm.week2.Service;
 
 import com.cvm.week2.Entity.Employee;
 import com.cvm.week2.Resposotries.EmployeeReposotries;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 
@@ -14,15 +16,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class EmolyeeServies {
 
     private final EmployeeReposotries empRepo;
-    private final ModelMapper modelMapper;
-
-    public EmolyeeServies(EmployeeReposotries empRepo, ModelMapper modelMapper) {
-        this.empRepo = empRepo;
-        this.modelMapper = modelMapper;
-    }
 
     public Employee findById(Long id){
        Employee employee=empRepo.findById(id).orElse(null);

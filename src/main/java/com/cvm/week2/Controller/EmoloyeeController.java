@@ -3,6 +3,9 @@ package com.cvm.week2.Controller;
 import com.cvm.week2.Entity.Employee;
 import com.cvm.week2.Resposotries.EmployeeReposotries;
 import com.cvm.week2.Service.EmolyeeServies;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,14 +17,20 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/emp")
+@RequiredArgsConstructor
 public class EmoloyeeController {
-
 
     private final EmolyeeServies empServices;
 
-    public EmoloyeeController(EmolyeeServies empServices) {
-        this.empServices = empServices;
-    }
+
+    @Operation(
+            summary = "Get Emp by Id API",
+            description = "from this you get perticular emp by its id"
+    )
+    @ApiResponse(
+            responseCode = "200",
+            description = "http status 200 sucess"
+    )
 
     @GetMapping("/{id}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
@@ -35,6 +44,16 @@ public class EmoloyeeController {
 //        return new ResponseEntity<>(employee, HttpStatus.CREATED);
 //    }
 
+
+
+    @Operation(
+            summary = "create Emp API",
+            description = "from this you create perticular emp "
+    )
+    @ApiResponse(
+            responseCode = "201",
+            description = "http status 201 created"
+    )
 
     @PostMapping
     public Employee savedEmp(@RequestBody Employee newEmp){
